@@ -4,23 +4,173 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Social Media Growth Services</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Color Palette */
+    :root {
+      --purple: #6a0dad;
+      --white: #ffffff;
+      --black: #000000;
+      --yellow: #ffd700;
+      --gray-dark: #222;
+    }
+
+    /* Base styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+
+    header.hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, var(--purple), var(--black));
+      animation: fadeIn 2s ease-out forwards;
+    }
+
+    header.hero p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #ddd;
+    }
+
+    .cta-buttons {
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--black);
+      font-weight: bold;
+      padding: 1rem 2.5rem;
+      margin: 0 1rem 1rem 0;
+      text-decoration: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(255, 215, 0, 0.4);
+      font-size: 1.3rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--purple);
+      color: var(--white);
+      box-shadow: 0 6px 14px rgba(106, 13, 173, 0.7);
+    }
+
+    section.services, section.faq, section.announcements {
+      background-color: var(--gray-dark);
+      padding: 2rem 1.5rem;
+      margin: 2rem auto;
+      max-width: 850px;
+      border-radius: 18px;
+      animation: slideUp 1.5s ease forwards;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 1rem;
+    }
+
+    ul li {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--yellow);
+      font-size: 1.15rem;
+      color: #eee;
+    }
+
+    .faq-item {
+      margin-bottom: 1.3rem;
+      cursor: pointer;
+    }
+
+    .faq-item h3 {
+      user-select: none;
+      position: relative;
+      padding-right: 25px;
+    }
+
+    .faq-item h3::after {
+      content: "\25BC"; /* Down arrow */
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active h3::after {
+      transform: rotate(180deg);
+    }
+
+    .faq-item p {
+      margin-top: 0.5rem;
+      display: none;
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.4;
+    }
+
+    .faq-item.active p {
+      display: block;
+    }
+
+    section.announcements p {
+      font-size: 1.1rem;
+      color: #fff08c;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 0.9rem;
+      box-shadow: inset 0 3px 5px rgba(0,0,0,0.5);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes slideUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
   <header class="hero">
     <h1>Premium Social Media Growth Services</h1>
-    <p>Affordable and reliable growth for Instagram, TikTok, YouTube, Facebook, Telegram & more.</p>
+    <p>Affordable and reliable growth for Instagram, TikTok, YouTube, Facebook, Telegram &amp; more.</p>
     <div class="cta-buttons">
-      <a href="https://wa.me/yourwhatsapplink" class="btn contact-btn">Contact Us on WhatsApp</a>
-      <a href="https://instagram.com/yourprofile" class="btn contact-btn">Instagram</a>
-      <a href="https://t.me/yourtelegram" class="btn contact-btn">Telegram</a>
+      <a href="https://wa.me/yourwhatsapplink" class="btn" target="_blank" rel="noopener">Contact Us on WhatsApp</a>
+      <a href="https://instagram.com/yourprofile" class="btn" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://t.me/yourtelegram" class="btn" target="_blank" rel="noopener">Telegram</a>
     </div>
   </header>
 
   <section class="services">
     <h2>Our Services</h2>
     <ul>
-      <li>Likes, Followers, Views, Shares, Saves, Comments</li>
+      <li>Likes, Followers, Views, Shares, Saves, Comments &amp; more</li>
       <li>Support for all major social platforms</li>
       <li>Customizable packages for every budget</li>
     </ul>
@@ -33,7 +183,7 @@
       <p>Yes, we ensure secure and private transactions while delivering high-quality services.</p>
     </div>
     <div class="faq-item">
-      <h3>How does it help my business?</h3>
+      <h3>How will it help my business?</h3>
       <p>Our services enhance your brand’s visibility and engagement to increase organic growth.</p>
     </div>
     <div class="faq-item">
@@ -51,6 +201,14 @@
     <p>&copy; 2025 Your Business Name</p>
   </footer>
 
-  <script src="scripts.js"></script>
+  <script>
+    // FAQ accordion functionality
+    document.querySelectorAll('.faq-item h3').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+  </script>
 </body>
 </html>
