@@ -1,983 +1,989 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insta Store | Premium Social Media Management</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #6a3093;
-            --primary-dark: #4a1d6b;
-            --secondary: #ffd700;
-            --secondary-light: #fff0a8;
-            --accent: #ff3860;
-            --dark: #1a1a1a;
-            --darker: #0f0f0f;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --gray: #7b7b7b;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: var(--darker);
-            color: var(--light);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(106, 48, 147, 0.1) 0%, transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 25%);
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
-            padding: 100px 0;
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--secondary), var(--white));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        h1 {
-            font-size: 4rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.8rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-        
-        p {
-            margin-bottom: 20px;
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(106, 48, 147, 0.4);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            letter-spacing: 1px;
-        }
-        
-        .btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            transition: var(--transition);
-            z-index: -1;
-        }
-        
-        .btn:hover:before {
-            width: 100%;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(106, 48, 147, 0.6);
-        }
-        
-        .btn-accent {
-            background: linear-gradient(135deg, var(--accent), #ff144d);
-            box-shadow: 0 10px 30px rgba(255, 56, 96, 0.4);
-        }
-        
-        .btn-accent:before {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        /* Header Styles */
-        header {
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: var(--transition);
-        }
-        
-        header.scrolled {
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--white);
-            text-decoration: none;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 40px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--light);
-            font-weight: 600;
-            transition: var(--transition);
-            position: relative;
-            font-size: 1.1rem;
-        }
-        
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: 120px 0 100px;
-        }
-        
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-            opacity: 0.2;
-            filter: blur(40px);
-            z-index: -1;
-            animation: pulse 8s infinite alternate;
-        }
-        
-        .hero:after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
-            opacity: 0.15;
-            filter: blur(40px);
-            z-index: -1;
-            animation: pulse 6s infinite alternate-reverse;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.2;
-            }
-            100% {
-                transform: scale(1.1);
-                opacity: 0.3;
-            }
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .hero-text {
-            flex: 1;
-            padding-right: 50px;
-            position: relative;
-        }
-        
-        .hero-image {
-            flex: 1;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            transform: perspective(800px) rotateY(-10deg);
-            transition: var(--transition);
-        }
-        
-        .hero-image img:hover {
-            transform: perspective(800px) rotateY(0);
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-        
-        .stats {
-            display: flex;
-            margin-top: 50px;
-        }
-        
-        .stat-item {
-            margin-right: 50px;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Services Section */
-        .services {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .services:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, var(--darker) 100%);
-            z-index: -1;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 70px;
-        }
-        
-        .service-card {
-            background: rgba(26, 26, 26, 0.6);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .service-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background: linear-gradient(to bottom, var(--primary), transparent);
-            transition: var(--transition);
-            z-index: -1;
-        }
-        
-        .service-card:hover:before {
-            height: 100%;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(106, 48, 147, 0.3);
-        }
-        
-        .service-icon {
-            font-size: 50px;
-            color: var(--secondary);
-            margin-bottom: 25px;
-            display: inline-block;
-            height: 100px;
-            width: 100px;
-            line-height: 100px;
-            border-radius: 50%;
-            background: rgba(255, 215, 0, 0.1);
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(10deg);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .service-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        
-        /* FAQ Section */
-        .faq {
-            background: linear-gradient(to bottom, var(--darker), var(--dark));
-            position: relative;
-        }
-        
-        .faq:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--secondary), transparent);
-        }
-        
-        .faq-item {
-            margin-bottom: 25px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            background: rgba(26, 26, 26, 0.6);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-        
-        .faq-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .faq-question {
-            padding: 25px;
-            background: rgba(106, 48, 147, 0.2);
-            color: var(--white);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-        
-        .faq-question:hover {
-            background: rgba(106, 48, 147, 0.3);
-        }
-        
-        .faq-answer {
-            padding: 0 25px;
-            background: transparent;
-            max-height: 0;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        
-        .faq-active .faq-answer {
-            padding: 25px;
-            max-height: 300px;
-        }
-        
-        .faq-active .faq-question i {
-            transform: rotate(180deg);
-        }
-        
-        /* Announcements Section */
-        .announcements {
-            position: relative;
-        }
-        
-        .announcement-card {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 40px rgba(106, 48, 147, 0.4);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .announcement-card:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            transform: rotate(30deg);
-            z-index: -1;
-        }
-        
-        .announcement-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .announcement-card p {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        /* Contact Section */
-        .contact {
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--secondary), transparent);
-        }
-        
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-top: 50px;
-        }
-        
-        .contact-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 40px;
-            background: rgba(26, 26, 26, 0.6);
-            color: var(--light);
-            text-decoration: none;
-            border-radius: 15px;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            min-width: 220px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .contact-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            transition: var(--transition);
-            z-index: -1;
-        }
-        
-        .contact-btn:hover:before {
-            width: 100%;
-        }
-        
-        .contact-btn:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .contact-btn i {
-            margin-right: 15px;
-            font-size: 24px;
-            transition: var(--transition);
-        }
-        
-        .contact-btn:hover i {
-            transform: scale(1.2);
-        }
-        
-        .whatsapp { color: #25D366; }
-        .instagram { color: #E1306C; }
-        .telegram { color: #0088cc; }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            padding: 80px 0 30px;
-            text-align: center;
-            position: relative;
-        }
-        
-        footer:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--secondary), transparent);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links li {
-            margin: 0 20px;
-        }
-        
-        .footer-links a {
-            color: var(--light);
-            text-decoration: none;
-            transition: var(--transition);
-            font-weight: 600;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            margin: 0 15px;
-            transition: var(--transition);
-            font-size: 20px;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .animate.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .delay-1 { transition-delay: 0.2s; }
-        .delay-2 { transition-delay: 0.4s; }
-        .delay-3 { transition-delay: 0.6s; }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <!-- Favicon for all devices -->
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%236a3093'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='10' fill='white'>SS</text></svg>">
+<link rel="icon" type="image/png" sizes="16x16" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%236a3093'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='5' fill='white'>SS</text></svg>">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><circle cx='90' cy='90' r='80' fill='%236a3093'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='60' fill='white'>SS</text></svg>">
+<meta name="theme-color" content="#6a3093">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Insta Store | Premium Social Media Management</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --primary: #6a3093;
+                --primary-dark: #4a1d6b;
+                --secondary: #ffd700;
+                --secondary-light: #fff0a8;
+                --accent: #ff3860;
+                --dark: #1a1a1a;
+                --darker: #0f0f0f;
+                --light: #f8f9fa;
+                --white: #ffffff;
+                --gray: #7b7b7b;
+                --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             }
             
-            .hero-text {
-                padding-right: 0;
-                margin-bottom: 60px;
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
             
-            .stats {
-                justify-content: center;
+            body {
+                background-color: var(--darker);
+                color: var(--light);
+                font-family: 'Montserrat', sans-serif;
+                line-height: 1.6;
+                overflow-x: hidden;
+                background-image: 
+                    radial-gradient(circle at 15% 50%, rgba(106, 48, 147, 0.1) 0%, transparent 25%),
+                    radial-gradient(circle at 85% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 25%);
+            }
+            
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            
+            section {
+                padding: 100px 0;
+            }
+            
+            h1, h2, h3, h4 {
+                font-family: 'Playfair Display', serif;
+                font-weight: 800;
+                margin-bottom: 20px;
+                background: linear-gradient(135deg, var(--secondary), var(--white));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
             
             h1 {
-                font-size: 3rem;
+                font-size: 4rem;
+                line-height: 1.2;
             }
             
             h2 {
-                font-size: 2.2rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+                font-size: 2.8rem;
+                position: relative;
+                display: inline-block;
             }
             
-            .contact-btn {
+            h2:after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 60px;
+                height: 4px;
+                background: linear-gradient(to right, var(--primary), var(--secondary));
+                border-radius: 2px;
+            }
+            
+            p {
+                margin-bottom: 20px;
+                color: var(--gray);
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                display: inline-block;
+                padding: 16px 40px;
+                background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+                color: var(--white);
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: 600;
+                transition: var(--transition);
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 10px 30px rgba(106, 48, 147, 0.4);
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+                letter-spacing: 1px;
+            }
+            
+            .btn:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 100%;
+                background: linear-gradient(135deg, var(--secondary), var(--primary));
+                transition: var(--transition);
+                z-index: -1;
+            }
+            
+            .btn:hover:before {
                 width: 100%;
             }
             
+            .btn:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(106, 48, 147, 0.6);
+            }
+            
+            .btn-accent {
+                background: linear-gradient(135deg, var(--accent), #ff144d);
+                box-shadow: 0 10px 30px rgba(255, 56, 96, 0.4);
+            }
+            
+            .btn-accent:before {
+                background: linear-gradient(135deg, var(--secondary), var(--accent));
+            }
+            
+            .text-center {
+                text-align: center;
+            }
+            
+            /* Header Styles */
+            header {
+                position: fixed;
+                width: 100%;
+                z-index: 1000;
+                padding: 20px 0;
+                transition: var(--transition);
+            }
+            
+            header.scrolled {
+                background: rgba(26, 26, 26, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 15px 0;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            }
+            
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .logo {
+                font-size: 32px;
+                font-weight: 800;
+                color: var(--white);
+                text-decoration: none;
+                font-family: 'Playfair Display', serif;
+            }
+            
+            .logo span {
+                color: var(--secondary);
+            }
+            
+            .nav-links {
+                display: flex;
+                list-style: none;
+            }
+            
+            .nav-links li {
+                margin-left: 40px;
+            }
+            
+            .nav-links a {
+                text-decoration: none;
+                color: var(--light);
+                font-weight: 600;
+                transition: var(--transition);
+                position: relative;
+                font-size: 1.1rem;
+            }
+            
+            .nav-links a:after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--secondary);
+                transition: var(--transition);
+            }
+            
+            .nav-links a:hover {
+                color: var(--secondary);
+            }
+            
+            .nav-links a:hover:after {
+                width: 100%;
+            }
+            
+            /* Hero Section */
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                padding: 120px 0 100px;
+            }
+            
+            .hero:before {
+                content: '';
+                position: absolute;
+                top: -100px;
+                right: -100px;
+                width: 600px;
+                height: 600px;
+                border-radius: 50%;
+                background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+                opacity: 0.2;
+                filter: blur(40px);
+                z-index: -1;
+                animation: pulse 8s infinite alternate;
+            }
+            
+            .hero:after {
+                content: '';
+                position: absolute;
+                bottom: -100px;
+                left: -100px;
+                width: 500px;
+                height: 500px;
+                border-radius: 50%;
+                background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+                opacity: 0.15;
+                filter: blur(40px);
+                z-index: -1;
+                animation: pulse 6s infinite alternate-reverse;
+            }
+            
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                    opacity: 0.2;
+                }
+                100% {
+                    transform: scale(1.1);
+                    opacity: 0.3;
+                }
+            }
+            
+            .hero-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            .hero-text {
+                flex: 1;
+                padding-right: 50px;
+                position: relative;
+            }
+            
+            .hero-image {
+                flex: 1;
+                text-align: center;
+                position: relative;
+            }
+            
+            .hero-image img {
+                max-width: 100%;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+                transform: perspective(800px) rotateY(-10deg);
+                transition: var(--transition);
+            }
+            
+            .hero-image img:hover {
+                transform: perspective(800px) rotateY(0);
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+                margin-bottom: 40px;
+                max-width: 600px;
+            }
+            
+            .stats {
+                display: flex;
+                margin-top: 50px;
+            }
+            
             .stat-item {
-                margin-right: 30px;
+                margin-right: 50px;
             }
             
             .stat-number {
-                font-size: 2rem;
+                font-size: 2.5rem;
+                font-weight: 800;
+                color: var(--secondary);
+                line-height: 1;
+                margin-bottom: 5px;
             }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">Social<span>Media<span>Management</span></a>
-                <ul class="nav-links">
-                    <li><a href="#services">Service     s</a></li>
+            
+            .stat-label {
+                font-size: 0.9rem;
+                color: var(--gray);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            
+            /* Services Section */
+            .services {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .services:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, transparent 0%, var(--darker) 100%);
+                z-index: -1;
+            }
+            
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 40px;
+                margin-top: 70px;
+            }
+            
+            .service-card {
+                background: rgba(26, 26, 26, 0.6);
+                border-radius: 20px;
+                padding: 40px 30px;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                transition: var(--transition);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+            
+            .service-card:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background: linear-gradient(to bottom, var(--primary), transparent);
+                transition: var(--transition);
+                z-index: -1;
+            }
+            
+            .service-card:hover:before {
+                height: 100%;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-15px);
+                box-shadow: 0 20px 40px rgba(106, 48, 147, 0.3);
+            }
+            
+            .service-icon {
+                font-size: 50px;
+                color: var(--secondary);
+                margin-bottom: 25px;
+                display: inline-block;
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                border-radius: 50%;
+                background: rgba(255, 215, 0, 0.1);
+                transition: var(--transition);
+            }
+            
+            .service-card:hover .service-icon {
+                transform: scale(1.1) rotate(10deg);
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            .service-card h3 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            /* FAQ Section */
+            .faq {
+                background: linear-gradient(to bottom, var(--darker), var(--dark));
+                position: relative;
+            }
+            
+            .faq:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(to right, transparent, var(--secondary), transparent);
+            }
+            
+            .faq-item {
+                margin-bottom: 25px;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                background: rgba(26, 26, 26, 0.6);
+                backdrop-filter: blur(10px);
+                transition: var(--transition);
+            }
+            
+            .faq-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            }
+            
+            .faq-question {
+                padding: 25px;
+                background: rgba(106, 48, 147, 0.2);
+                color: var(--white);
+                font-weight: 600;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 1.2rem;
+                transition: var(--transition);
+            }
+            
+            .faq-question:hover {
+                background: rgba(106, 48, 147, 0.3);
+            }
+            
+            .faq-answer {
+                padding: 0 25px;
+                background: transparent;
+                max-height: 0;
+                overflow: hidden;
+                transition: var(--transition);
+            }
+            
+            .faq-active .faq-answer {
+                padding: 25px;
+                max-height: 300px;
+            }
+            
+            .faq-active .faq-question i {
+                transform: rotate(180deg);
+            }
+            
+            /* Announcements Section */
+            .announcements {
+                position: relative;
+            }
+            
+            .announcement-card {
+                background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+                color: var(--white);
+                border-radius: 20px;
+                padding: 40px;
+                margin-bottom: 30px;
+                box-shadow: 0 15px 40px rgba(106, 48, 147, 0.4);
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+            
+            .announcement-card:before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                transform: rotate(30deg);
+                z-index: -1;
+            }
+            
+            .announcement-card h3 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+            
+            .announcement-card p {
+                color: rgba(255, 255, 255, 0.8);
+            }
+            
+            /* Contact Section */
+            .contact {
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .contact:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(to right, transparent, var(--secondary), transparent);
+            }
+            
+            .contact-buttons {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 25px;
+                margin-top: 50px;
+            }
+            
+            .contact-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px 40px;
+                background: rgba(26, 26, 26, 0.6);
+                color: var(--light);
+                text-decoration: none;
+                border-radius: 15px;
+                font-weight: 600;
+                transition: var(--transition);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                min-width: 220px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+            
+            .contact-btn:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 100%;
+                background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+                transition: var(--transition);
+                z-index: -1;
+            }
+            
+            .contact-btn:hover:before {
+                width: 100%;
+            }
+            
+            .contact-btn:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            }
+            
+            .contact-btn i {
+                margin-right: 15px;
+                font-size: 24px;
+                transition: var(--transition);
+            }
+            
+            .contact-btn:hover i {
+                transform: scale(1.2);
+            }
+            
+            .whatsapp { color: #25D366; }
+            .instagram { color: #E1306C; }
+            .telegram { color: #0088cc; }
+            
+            /* Footer */
+            footer {
+                background: var(--dark);
+                padding: 80px 0 30px;
+                text-align: center;
+                position: relative;
+            }
+            
+            footer:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(to right, transparent, var(--secondary), transparent);
+            }
+            
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                list-style: none;
+                margin: 40px 0;
+                flex-wrap: wrap;
+            }
+            
+            .footer-links li {
+                margin: 0 20px;
+            }
+            
+            .footer-links a {
+                color: var(--light);
+                text-decoration: none;
+                transition: var(--transition);
+                font-weight: 600;
+            }
+            
+            .footer-links a:hover {
+                color: var(--secondary);
+            }
+            
+            .social-links {
+                display: flex;
+                justify-content: center;
+                margin: 30px 0;
+            }
+            
+            .social-links a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--light);
+                margin: 0 15px;
+                transition: var(--transition);
+                font-size: 20px;
+            }
+            
+            .social-links a:hover {
+                background: var(--primary);
+                transform: translateY(-5px);
+            }
+            
+            /* Animations */
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .animate {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+            
+            .animate.animated {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .delay-1 { transition-delay: 0.2s; }
+            .delay-2 { transition-delay: 0.4s; }
+            .delay-3 { transition-delay: 0.6s; }
+            
+            /* Responsive Design */
+            @media (max-width: 992px) {
+                .hero-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                
+                .hero-text {
+                    padding-right: 0;
+                    margin-bottom: 60px;
+                }
+                
+                .stats {
+                    justify-content: center;
+                }
+                
+                h1 {
+                    font-size: 3rem;
+                }
+                
+                h2 {
+                    font-size: 2.2rem;
+                }
+            }
+            
+            @media (max-width: 768px) {
+                .nav-links {
+                    display: none;
+                }
+                
+                .contact-btn {
+                    width: 100%;
+                }
+                
+                .stat-item {
+                    margin-right: 30px;
+                }
+                
+                .stat-number {
+                    font-size: 2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header id="header">
+            <div class="container">
+                <nav>
+                    <a href="#" class="logo">Social<span>Media<span>Management</span></a>
+                    <ul class="nav-links">
+                        <li><a href="#services">Service     s</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#announcements">Announcements</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text animate">
+                        <h1>Elevate Your Social Media Presence</h1>
+                        <p>Premium social media management services that deliver real results. Increase your followers,likes,views, engagement, and brand visibility across all platforms.</p>
+                        <a href="#contact" class="btn">Get Started Today</a>
+                        
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">50K+</div>
+                                <div class="stat-label">Clients Satisfied</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100M+</div>
+                                <div class="stat-label">Followers Delivered</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Support</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image animate delay-1">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='400' viewBox='0 0 500 400'><rect width='500' height='400' rx='20' fill='%234a1d6b'/><path d='M250,100 C350,50 450,150 250,300 C50,150 150,50 250,100 Z' fill='%236a3093'/><circle cx='250' cy='200' r='80' fill='%23ffd700'/></svg>" alt="Social Media Analytics">
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <h2 class="text-center animate">Our Premium Services</h2>
+                <p class="text-center animate delay-1">We provide high-quality social media growth services for all major platforms</p>
+                
+                <div class="services-grid">
+                    <div class="service-card animate">
+                        <div class="service-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3>Instagram Growth</h3>
+                        <p>Get more followers, likes, views, comments, and shares on your Instagram posts and profile.</p>
+                    </div>
+                    
+                    <div class="service-card animate delay-1">
+                        <div class="service-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <h3>TikTok Growth</h3>
+                        <p>Increase your views, likes, followers, and shares on TikTok to boost your visibility.</p>
+                    </div>
+                    
+                    <div class="service-card animate delay-2">
+                        <div class="service-icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <h3>YouTube Growth</h3>
+                        <p>Gain more subscribers, views, likes, and comments on your YouTube videos and channel.</p>
+                    </div>
+                    
+                    <div class="service-card animate delay-3">
+                        <div class="service-icon">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <h3>Facebook Growth</h3>
+                        <p>Increase your page followers + likes, post engagement, and profile followers on Facebook.</p>
+                    </div>
+                    
+                    <div class="service-card animate">
+                        <div class="service-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <h3>Telegram Growth</h3>
+                        <p>Get more members, views, and engagement for your Telegram channels and groups.</p>
+                    </div>
+                    
+                    <div class="service-card animate delay-1">
+                        <div class="service-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>All Social Platforms</h3>
+                        <p>We provide services for all major social media platforms to help you grow your online presence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <h2 class="text-center animate">Frequently Asked Questions</h2>
+                <p class="text-center animate delay-1">Find answers to common questions about our premium services</p>
+                
+                <div class="faq-list">
+                    <div class="faq-item animate">
+                        <div class="faq-question">
+                            How will this help my business?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer affordable and reliable social media growth services to enhance your brand's visibility and engagement. Increased social proof leads to more organic followers and customers, helping your business stand out in a crowded digital landscape.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item animate delay-1">
+                        <div class="faq-question">
+                            Is it safe to use your services?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we ensure secure and private transactions while delivering high-quality services. We prioritize the safety of your accounts and never ask for your password. Our methods are designed to work within platform guidelines to minimize any risks.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item animate delay-2">
+                        <div class="faq-question">
+                            Are the followers real?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We provide high-quality services, but the type of followers depends on the package chosen. We offer options from basic to premium quality to suit different needs and budgets. Our premium packages deliver the highest quality engagement available.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item animate delay-3">
+                        <div class="faq-question">
+                            How do I place an order?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Simply contact us through any of our social media channels or WhatsApp. Our team will guide you through the process and help you choose the best package for your needs. We offer customized solutions based on your specific goals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Announcements Section -->
+        <section class="announcements" id="announcements">
+            <div class="container">
+                <h2 class="text-center animate">Special Offers & Announcements</h2>
+                <p class="text-center animate delay-1">Check out our latest promotions and updates</p>
+                
+                <div class="announcement-card animate">
+                    <h3>🔥 Weekly Special Offer</h3>
+                    <p>This week only - get 20% off on 10k+ followers or custom discount available for bulk views.</p>
+                    <p><small>Offer valid until: December 31, 2025</small></p>
+                </div>
+                
+                <div class="announcement-card animate delay-1">
+                    <h3>🚀 New Service Available</h3>
+                    <p>We now offer TikTok growth packages! Boost your views, likes, and followers on the fastest growing social platform-Unlimited posts.</p>
+                </div>
+                
+                <div class="announcement-card animate delay-2">
+                    <h3>⭐ Premium Packages</h3>
+                    <p>Introducing our new premium tier with higher quality followers and faster delivery for all major platforms.</p>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="animate">Contact Us</h2>
+                <p class="animate delay-1">Reach out to us through any of these channels for a consultation</p>
+                
+                <div class="contact-buttons">
+                    <a href="https://wa.me/917017727563" class="contact-btn">
+                        <i class="fab fa-whatsapp whatsapp"></i> WhatsApp
+                    </a>
+                    
+                    <a href="https://instagram.com/social.slay" class="contact-btn">
+                        <i class="fab fa-instagram instagram"></i> Instagram
+                    </a>
+                    
+                    <a href="https://t.me/inframe_vamp" class="contact-btn">
+                        <i class="fab fa-telegram telegram"></i> Telegram
+                    </a>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <h3>BILAL</h3>
+                <p>Premium Social Media Management</p>
+                
+                <ul class="footer-links">
+                    <li><a href="#services">Services</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#announcements">Announcements</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text animate">
-                    <h1>Elevate Your Social Media Presence</h1>
-                    <p>Premium social media management services that deliver real results. Increase your followers,likes,views, engagement, and brand visibility across all platforms.</p>
-                    <a href="#contact" class="btn">Get Started Today</a>
-                    
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-number">50K+</div>
-                            <div class="stat-label">Clients Satisfied</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">100M+</div>
-                            <div class="stat-label">Followers Delivered</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support</div>
-                        </div>
-                    </div>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/917017727563"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/social.slay"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/inframe_vamp"><i class="fab fa-telegram"></i></a>
                 </div>
-                <div class="hero-image animate delay-1">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='400' viewBox='0 0 500 400'><rect width='500' height='400' rx='20' fill='%234a1d6b'/><path d='M250,100 C350,50 450,150 250,300 C50,150 150,50 250,100 Z' fill='%236a3093'/><circle cx='250' cy='200' r='80' fill='%23ffd700'/></svg>" alt="Social Media Analytics">
-                </div>
+                
+                <p>&copy; 2025-2026 Social Media Management. All rights reserved.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="text-center animate">Our Premium Services</h2>
-            <p class="text-center animate delay-1">We provide high-quality social media growth services for all major platforms</p>
-            
-            <div class="services-grid">
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3>Instagram Growth</h3>
-                    <p>Get more followers, likes, views, comments, and shares on your Instagram posts and profile.</p>
-                </div>
-                
-                <div class="service-card animate delay-1">
-                    <div class="service-icon">
-                        <i class="fab fa-tiktok"></i>
-                    </div>
-                    <h3>TikTok Growth</h3>
-                    <p>Increase your views, likes, followers, and shares on TikTok to boost your visibility.</p>
-                </div>
-                
-                <div class="service-card animate delay-2">
-                    <div class="service-icon">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <h3>YouTube Growth</h3>
-                    <p>Gain more subscribers, views, likes, and comments on your YouTube videos and channel.</p>
-                </div>
-                
-                <div class="service-card animate delay-3">
-                    <div class="service-icon">
-                        <i class="fab fa-facebook"></i>
-                    </div>
-                    <h3>Facebook Growth</h3>
-                    <p>Increase your page followers + likes, post engagement, and profile followers on Facebook.</p>
-                </div>
-                
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fab fa-telegram"></i>
-                    </div>
-                    <h3>Telegram Growth</h3>
-                    <p>Get more members, views, and engagement for your Telegram channels and groups.</p>
-                </div>
-                
-                <div class="service-card animate delay-1">
-                    <div class="service-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>All Social Platforms</h3>
-                    <p>We provide services for all major social media platforms to help you grow your online presence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2 class="text-center animate">Frequently Asked Questions</h2>
-            <p class="text-center animate delay-1">Find answers to common questions about our premium services</p>
-            
-            <div class="faq-list">
-                <div class="faq-item animate">
-                    <div class="faq-question">
-                        How will this help my business?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We offer affordable and reliable social media growth services to enhance your brand's visibility and engagement. Increased social proof leads to more organic followers and customers, helping your business stand out in a crowded digital landscape.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item animate delay-1">
-                    <div class="faq-question">
-                        Is it safe to use your services?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we ensure secure and private transactions while delivering high-quality services. We prioritize the safety of your accounts and never ask for your password. Our methods are designed to work within platform guidelines to minimize any risks.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item animate delay-2">
-                    <div class="faq-question">
-                        Are the followers real?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We provide high-quality services, but the type of followers depends on the package chosen. We offer options from basic to premium quality to suit different needs and budgets. Our premium packages deliver the highest quality engagement available.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item animate delay-3">
-                    <div class="faq-question">
-                        How do I place an order?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Simply contact us through any of our social media channels or WhatsApp. Our team will guide you through the process and help you choose the best package for your needs. We offer customized solutions based on your specific goals.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Announcements Section -->
-    <section class="announcements" id="announcements">
-        <div class="container">
-            <h2 class="text-center animate">Special Offers & Announcements</h2>
-            <p class="text-center animate delay-1">Check out our latest promotions and updates</p>
-            
-            <div class="announcement-card animate">
-                <h3>🔥 Weekly Special Offer</h3>
-                <p>This week only - get 20% off on 10k+ followers or custom discount available for bulk views.</p>
-                <p><small>Offer valid until: December 31, 2025</small></p>
-            </div>
-            
-            <div class="announcement-card animate delay-1">
-                <h3>🚀 New Service Available</h3>
-                <p>We now offer TikTok growth packages! Boost your views, likes, and followers on the fastest growing social platform-Unlimited posts.</p>
-            </div>
-            
-            <div class="announcement-card animate delay-2">
-                <h3>⭐ Premium Packages</h3>
-                <p>Introducing our new premium tier with higher quality followers and faster delivery for all major platforms.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="animate">Contact Us</h2>
-            <p class="animate delay-1">Reach out to us through any of these channels for a consultation</p>
-            
-            <div class="contact-buttons">
-                <a href="https://wa.me/917017727563" class="contact-btn">
-                    <i class="fab fa-whatsapp whatsapp"></i> WhatsApp
-                </a>
-                
-                <a href="https://instagram.com/social.slay" class="contact-btn">
-                    <i class="fab fa-instagram instagram"></i> Instagram
-                </a>
-                
-                <a href="https://t.me/inframe_vamp" class="contact-btn">
-                    <i class="fab fa-telegram telegram"></i> Telegram
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <h3>BILAL</h3>
-            <p>Premium Social Media Management</p>
-            
-            <ul class="footer-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#announcements">Announcements</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            
-            <div class="social-links">
-                <a href="https://wa.me/917017727563"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/social.slay"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/inframe_vamp"><i class="fab fa-telegram"></i></a>
-            </div>
-            
-            <p>&copy; 2025-2026 Social Media Management. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                item.classList.toggle('faq-active');
-            });
-        });
-        
-        // Animation on scroll
-        function checkAnimation() {
-            const elements = document.querySelectorAll('.animate');
-            elements.forEach(element => {
-                const position = element.getBoundingClientRect();
-                if (position.top < window.innerHeight - 100) {
-                    element.classList.add('animated');
+        </footer>
+    
+        <script>
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
             });
-        }
-        
-        window.addEventListener('scroll', checkAnimation);
-        window.addEventListener('load', checkAnimation);
-        
-        // Initial animation trigger
-        setTimeout(() => {
-            checkAnimation();
-        }, 500);
-    </script>
-</body>
-</html>
-
+            
+            // FAQ Toggle
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    item.classList.toggle('faq-active');
+                });
+            });
+            
+            // Animation on scroll
+            function checkAnimation() {
+                const elements = document.querySelectorAll('.animate');
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    if (position.top < window.innerHeight - 100) {
+                        element.classList.add('animated');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkAnimation);
+            window.addEventListener('load', checkAnimation);
+            
+            // Initial animation trigger
+            setTimeout(() => {
+                checkAnimation();
+            }, 500);
+        </script>
+    </body>
+    </html>
+    
+    
