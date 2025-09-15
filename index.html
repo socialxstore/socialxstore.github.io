@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocialBoost - Professional Social Media Growth Services</title>
+    <title>Social Slay | Premium Social Media Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        /* Base Styles */
         :root {
             --primary: #6a3093;
-            --secondary: #a044ff;
-            --accent: #ffd700;
+            --primary-dark: #4a1d6b;
+            --secondary: #ffd700;
+            --secondary-light: #fff0a8;
+            --accent: #ff3860;
             --dark: #1a1a1a;
+            --darker: #0f0f0f;
             --light: #f8f9fa;
             --white: #ffffff;
+            --gray: #7b7b7b;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--darker);
+            color: var(--light);
+            font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(106, 48, 147, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 25%);
         }
         
         .container {
@@ -38,41 +46,92 @@
         }
         
         section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
             margin-bottom: 20px;
-            color: var(--primary);
-            font-weight: 700;
+            background: linear-gradient(135deg, var(--secondary), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
         }
         
         p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: var(--gray);
+            font-size: 1.1rem;
         }
         
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: var(--white);
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
+            box-shadow: 0 10px 30px rgba(106, 48, 147, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            width: 100%;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(106, 48, 147, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(106, 48, 147, 0.6);
         }
         
         .btn-accent {
-            background: linear-gradient(135deg, var(--accent), #ffb700);
-            color: var(--dark);
+            background: linear-gradient(135deg, var(--accent), #ff144d);
+            box-shadow: 0 10px 30px rgba(255, 56, 96, 0.4);
+        }
+        
+        .btn-accent:before {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
         }
         
         .text-center {
@@ -81,25 +140,32 @@
         
         /* Header Styles */
         header {
-            background-color: var(--white);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
         
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
         }
         
         .logo {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--white);
             text-decoration: none;
+            font-family: 'Playfair Display', serif;
         }
         
         .logo span {
@@ -112,26 +178,86 @@
         }
         
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 40px;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--light);
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
         }
         
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
         }
         
         /* Hero Section */
         .hero {
-            padding-top: 150px;
-            padding-bottom: 100px;
-            background: linear-gradient(135deg, rgba(106, 48, 147, 0.1), rgba(160, 68, 255, 0.1)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23e9ecef" stroke-width="1"/></svg>');
-            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 100px;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.2;
+            filter: blur(40px);
+            z-index: -1;
+            animation: pulse 8s infinite alternate;
+        }
+        
+        .hero:after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            opacity: 0.15;
+            filter: blur(40px);
+            z-index: -1;
+            animation: pulse 6s infinite alternate-reverse;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
         }
         
         .hero-content {
@@ -143,141 +269,316 @@
         .hero-text {
             flex: 1;
             padding-right: 50px;
+            position: relative;
         }
         
         .hero-image {
             flex: 1;
             text-align: center;
+            position: relative;
         }
         
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            line-height: 1.2;
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            transform: perspective(800px) rotateY(-10deg);
+            transition: var(--transition);
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(800px) rotateY(0);
         }
         
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            color: #555;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        
+        .stats {
+            display: flex;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            margin-right: 50px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         /* Services Section */
         .services {
-            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, var(--darker) 100%);
+            z-index: -1;
         }
         
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            gap: 40px;
+            margin-top: 70px;
         }
         
         .service-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 30px;
+            background: rgba(26, 26, 26, 0.6);
+            border-radius: 20px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .service-card:hover:before {
+            height: 100%;
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(106, 48, 147, 0.2);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(106, 48, 147, 0.3);
         }
         
         .service-icon {
             font-size: 50px;
-            color: var(--primary);
+            color: var(--secondary);
+            margin-bottom: 25px;
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(10deg);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .service-card h3 {
+            font-size: 1.8rem;
             margin-bottom: 20px;
         }
         
         /* FAQ Section */
         .faq {
-            background: linear-gradient(135deg, rgba(106, 48, 147, 0.05), rgba(160, 68, 255, 0.05));
+            background: linear-gradient(to bottom, var(--darker), var(--dark));
+            position: relative;
+        }
+        
+        .faq:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
         }
         
         .faq-item {
-            margin-bottom: 20px;
-            border-radius: 10px;
+            margin-bottom: 25px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
         
         .faq-question {
-            padding: 20px;
-            background: var(--primary);
+            padding: 25px;
+            background: rgba(106, 48, 147, 0.2);
             color: var(--white);
             font-weight: 600;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background: rgba(106, 48, 147, 0.3);
         }
         
         .faq-answer {
-            padding: 20px;
-            background: var(--white);
-            display: none;
+            padding: 0 25px;
+            background: transparent;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
         }
         
         .faq-active .faq-answer {
-            display: block;
+            padding: 25px;
+            max-height: 300px;
+        }
+        
+        .faq-active .faq-question i {
+            transform: rotate(180deg);
         }
         
         /* Announcements Section */
         .announcements {
-            background-color: var(--white);
+            position: relative;
         }
         
         .announcement-card {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: var(--white);
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(106, 48, 147, 0.3);
+            box-shadow: 0 15px 40px rgba(106, 48, 147, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .announcement-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+            z-index: -1;
+        }
+        
+        .announcement-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .announcement-card p {
+            color: rgba(255, 255, 255, 0.8);
         }
         
         /* Contact Section */
         .contact {
-            background: linear-gradient(135deg, rgba(106, 48, 147, 0.1), rgba(160, 68, 255, 0.1));
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
         }
         
         .contact-buttons {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 40px;
+            gap: 25px;
+            margin-top: 50px;
         }
         
         .contact-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px 30px;
-            background: var(--white);
-            color: var(--dark);
+            padding: 20px 40px;
+            background: rgba(26, 26, 26, 0.6);
+            color: var(--light);
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 15px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            min-width: 200px;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            min-width: 220px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .contact-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .contact-btn:hover:before {
+            width: 100%;
         }
         
         .contact-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
         
         .contact-btn i {
-            margin-right: 10px;
-            font-size: 20px;
+            margin-right: 15px;
+            font-size: 24px;
+            transition: var(--transition);
+        }
+        
+        .contact-btn:hover i {
+            transform: scale(1.2);
         }
         
         .whatsapp { color: #25D366; }
@@ -286,41 +587,90 @@
         
         /* Footer */
         footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 50px 0 20px;
+            background: var(--dark);
+            padding: 80px 0 30px;
             text-align: center;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
         }
         
         .footer-links {
             display: flex;
             justify-content: center;
             list-style: none;
-            margin: 20px 0;
+            margin: 40px 0;
+            flex-wrap: wrap;
         }
         
         .footer-links li {
-            margin: 0 15px;
+            margin: 0 20px;
         }
         
         .footer-links a {
-            color: var(--white);
+            color: var(--light);
             text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            margin: 0 15px;
+            transition: var(--transition);
+            font-size: 20px;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
         }
         
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         .animate {
-            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
+        .animate.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
         
         /* Responsive Design */
         @media (max-width: 992px) {
@@ -331,21 +681,47 @@
             
             .hero-text {
                 padding-right: 0;
-                margin-bottom: 50px;
+                margin-bottom: 60px;
             }
             
+            .stats {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+            
+            .contact-btn {
+                width: 100%;
+            }
+            
+            .stat-item {
+                margin-right: 30px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container">
             <nav>
-                <a href="#" class="logo">Social<span>Boost</span></a>
+                <a href="#" class="logo">Social<span>Slay</span></a>
                 <ul class="nav-links">
                     <li><a href="#services">Services</a></li>
                     <li><a href="#faq">FAQ</a></li>
@@ -361,12 +737,27 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text animate">
-                    <h1>Boost Your Social Media Presence Instantly</h1>
-                    <p>Get real followers, likes, views, and engagement across all social media platforms. Affordable, reliable, and secure services to enhance your brand's visibility.</p>
+                    <h1>Elevate Your Social Media Presence</h1>
+                    <p>Premium social media management services that deliver real results. Increase your followers, engagement, and brand visibility across all platforms.</p>
                     <a href="#contact" class="btn">Get Started Today</a>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Clients Satisfied</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5M+</div>
+                            <div class="stat-label">Followers Delivered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="hero-image animate delay-1">
-                    <i class="fas fa-chart-line" style="font-size: 300px; color: var(--primary); opacity: 0.8;"></i>
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='400' viewBox='0 0 500 400'><rect width='500' height='400' rx='20' fill='%234a1d6b'/><path d='M250,100 C350,50 450,150 250,300 C50,150 150,50 250,100 Z' fill='%236a3093'/><circle cx='250' cy='200' r='80' fill='%23ffd700'/></svg>" alt="Social Media Analytics">
                 </div>
             </div>
         </div>
@@ -375,8 +766,8 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="text-center">Our Services</h2>
-            <p class="text-center">We provide high-quality social media growth services for all major platforms</p>
+            <h2 class="text-center animate">Our Premium Services</h2>
+            <p class="text-center animate delay-1">We provide high-quality social media growth services for all major platforms</p>
             
             <div class="services-grid">
                 <div class="service-card animate">
@@ -433,8 +824,8 @@
     <!-- FAQ Section -->
     <section class="faq" id="faq">
         <div class="container">
-            <h2 class="text-center">Frequently Asked Questions</h2>
-            <p class="text-center">Find answers to common questions about our services</p>
+            <h2 class="text-center animate">Frequently Asked Questions</h2>
+            <p class="text-center animate delay-1">Find answers to common questions about our premium services</p>
             
             <div class="faq-list">
                 <div class="faq-item animate">
@@ -443,7 +834,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>We offer affordable and reliable social media growth services to enhance your brand's visibility and engagement. Increased social proof leads to more organic followers and customers.</p>
+                        <p>We offer affordable and reliable social media growth services to enhance your brand's visibility and engagement. Increased social proof leads to more organic followers and customers, helping your business stand out in a crowded digital landscape.</p>
                     </div>
                 </div>
                 
@@ -453,7 +844,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, we ensure secure and private transactions while delivering high-quality services. We prioritize the safety of your accounts and never ask for your password.</p>
+                        <p>Yes, we ensure secure and private transactions while delivering high-quality services. We prioritize the safety of your accounts and never ask for your password. Our methods are designed to work within platform guidelines to minimize any risks.</p>
                     </div>
                 </div>
                 
@@ -463,7 +854,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>We provide high-quality services, but the type of followers depends on the package chosen. We offer options from basic to premium quality to suit different needs and budgets.</p>
+                        <p>We provide high-quality services, but the type of followers depends on the package chosen. We offer options from basic to premium quality to suit different needs and budgets. Our premium packages deliver the highest quality engagement available.</p>
                     </div>
                 </div>
                 
@@ -473,7 +864,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Simply contact us through any of our social media channels or WhatsApp. Our team will guide you through the process and help you choose the best package for your needs.</p>
+                        <p>Simply contact us through any of our social media channels or WhatsApp. Our team will guide you through the process and help you choose the best package for your needs. We offer customized solutions based on your specific goals.</p>
                     </div>
                 </div>
             </div>
@@ -483,13 +874,13 @@
     <!-- Announcements Section -->
     <section class="announcements" id="announcements">
         <div class="container">
-            <h2 class="text-center">Special Offers & Announcements</h2>
-            <p class="text-center">Check out our latest promotions and updates</p>
+            <h2 class="text-center animate">Special Offers & Announcements</h2>
+            <p class="text-center animate delay-1">Check out our latest promotions and updates</p>
             
             <div class="announcement-card animate">
                 <h3>🔥 Weekly Special Offer</h3>
                 <p>This week only - get 20% off on all Instagram packages! Use code INSTA20 at checkout.</p>
-                <p><small>Offer valid until: June 30, 2023</small></p>
+                <p><small>Offer valid until: December 30, 2023</small></p>
             </div>
             
             <div class="announcement-card animate delay-1">
@@ -507,19 +898,19 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="text-center">Contact Us</h2>
-            <p class="text-center">Reach out to us through any of these channels</p>
+            <h2 class="animate">Contact Us</h2>
+            <p class="animate delay-1">Reach out to us through any of these channels for a consultation</p>
             
             <div class="contact-buttons">
-                <a href="https://wa.me/yournumber" class="contact-btn">
+                <a href="https://wa.me/917017727563" class="contact-btn">
                     <i class="fab fa-whatsapp whatsapp"></i> WhatsApp
                 </a>
                 
-                <a href="https://instagram.com/yourusername" class="contact-btn">
+                <a href="https://instagram.com/social.slay" class="contact-btn">
                     <i class="fab fa-instagram instagram"></i> Instagram
                 </a>
                 
-                <a href="https://t.me/yourusername" class="contact-btn">
+                <a href="https://t.me/inframe_vamp" class="contact-btn">
                     <i class="fab fa-telegram telegram"></i> Telegram
                 </a>
             </div>
@@ -529,8 +920,8 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <h3>SocialBoost</h3>
-            <p>Professional Social Media Growth Services</p>
+            <h3>Social Slay</h3>
+            <p>Premium Social Media Management</p>
             
             <ul class="footer-links">
                 <li><a href="#services">Services</a></li>
@@ -539,11 +930,27 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             
-            <p>&copy; 2023 SocialBoost. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://wa.me/917017727563"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/social.slay"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/inframe_vamp"><i class="fab fa-telegram"></i></a>
+            </div>
+            
+            <p>&copy; 2023 Social Slay. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
         // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
@@ -553,22 +960,23 @@
         });
         
         // Animation on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.animate');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            animatedElements.forEach(element => {
-                element.style.opacity = 0;
-                observer.observe(element);
+        function checkAnimation() {
+            const elements = document.querySelectorAll('.animate');
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                if (position.top < window.innerHeight - 100) {
+                    element.classList.add('animated');
+                }
             });
-        });
+        }
+        
+        window.addEventListener('scroll', checkAnimation);
+        window.addEventListener('load', checkAnimation);
+        
+        // Initial animation trigger
+        setTimeout(() => {
+            checkAnimation();
+        }, 500);
     </script>
 </body>
 </html>
