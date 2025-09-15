@@ -1,248 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Console Crusade — Social Media Growth</title>
-  <meta name="description" content="Affordable, reliable social media growth: followers, likes, views, shares, saves and more for Instagram, TikTok, YouTube, Telegram and Facebook." />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#0b0810; /* deep black */
-      --card:#0f0b16;
-      --purple1:#5b21b6;
-      --purple2:#7c3aed;
-      --accent:#ffd166; /* premium yellow */
-      --muted:#bdb6c9;
-      --glass: rgba(255,255,255,0.04);
-      --radius:14px;
-      --max-w:1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Poppins,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#eee;background:linear-gradient(180deg,#07050a 0%, #0b0810 100%);-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-
-    .container{max-width:var(--max-w);margin:40px auto;padding:28px}
-
-    header{display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--purple1),var(--purple2));display:flex;align-items:center;justify-content:center;font-family:Playfair Display,serif;font-weight:700;color:white;font-size:18px;box-shadow:0 6px 18px rgba(124,58,237,0.18)}
-    h1.site-title{margin:0;font-size:18px}
-    p.tag{margin:0;color:var(--muted);font-size:13px}
-
-    .cta-row{display:flex;gap:12px;align-items:center}
-    .cta-big{background:linear-gradient(90deg,var(--accent),#ffda9e);color:#111;padding:12px 18px;border-radius:12px;font-weight:700;box-shadow:0 8px 30px rgba(255,209,102,0.12)}
-    .cta-ghost{border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;color:var(--muted)}
-
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin:28px 0}
-    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:28px;border-radius:18px;backdrop-filter:blur(6px);box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    .hero h2{font-family:Playfair Display,serif;margin:0 0 6px 0;font-size:32px}
-    .hero p.lead{color:var(--muted);margin:0 0 18px 0}
-    .features{display:flex;gap:12px;flex-wrap:wrap}
-    .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted)}
-
-    .card-right{padding:18px;border-radius:14px;background:linear-gradient(135deg,var(--purple1),var(--purple2));color:#111}
-    .stat{display:flex;align-items:center;justify-content:space-between;margin:8px 0}
-    .stat strong{font-size:20px}
-
-    /* services */
-    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-    .service{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-    .service h4{margin:0 0 6px 0}
-    .service p{margin:0;color:var(--muted);font-size:13px}
-
-    /* Pricing */
-    .pricing{display:flex;gap:14px;margin-top:22px}
-    .price-card{flex:1;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03)}
-    .price-card.featured{background:linear-gradient(90deg,#fff5e6, #fff2d1);color:#111;transform:translateY(-6px);box-shadow:0 14px 40px rgba(255,209,102,0.08)}
-
-    /* FAQ */
-    .faq{margin-top:28px}
-    .q{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.03)}
-    .q button{width:100%;text-align:left;background:none;border:0;color:inherit;padding:0;font-weight:600;display:flex;justify-content:space-between;align-items:center}
-    .answer{max-height:0;overflow:hidden;transition:max-height .36s ease;padding-top:0}
-    .q.open .answer{max-height:240px;padding-top:10px}
-
-    /* Announcements ticker */
-    .ticker{background:linear-gradient(90deg,var(--purple1),var(--purple2));padding:10px;border-radius:999px;color:#111;margin-top:18px;overflow:hidden}
-    .ticker-list{display:inline-block;white-space:nowrap;animation:slide 12s linear infinite}
-    @keyframes slide{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-
-    /* footer */
-    footer{margin-top:36px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-
-    /* responsive */
-    @media (max-width:980px){.hero{grid-template-columns:1fr;}.services-grid{grid-template-columns:repeat(2,1fr)}.pricing{flex-direction:column}.container{padding:18px;margin:18px}}
-    @media (max-width:520px){.services-grid{grid-template-columns:1fr}}
-
-    /* sticky whatsapp */
-    .whatsapp-fab{position:fixed;right:18px;bottom:18px;border-radius:999px;padding:14px 16px;background:linear-gradient(90deg,#25D366,#128C7E);box-shadow:0 10px 30px rgba(18,140,126,0.18);color:white;font-weight:700;display:flex;align-items:center;gap:10px}
-    .whatsapp-fab svg{width:20px;height:20px}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Social Media Growth Services</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">CC</div>
-        <div>
-          <h1 class="site-title">Console Crusade</h1>
-          <p class="tag">Social media growth — affordable & reliable</p>
-        </div>
-      </div>
+  <header class="hero">
+    <h1>Premium Social Media Growth Services</h1>
+    <p>Affordable and reliable growth for Instagram, TikTok, YouTube, Facebook, Telegram & more.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/yourwhatsapplink" class="btn contact-btn">Contact Us on WhatsApp</a>
+      <a href="https://instagram.com/yourprofile" class="btn contact-btn">Instagram</a>
+      <a href="https://t.me/yourtelegram" class="btn contact-btn">Telegram</a>
+    </div>
+  </header>
 
-      <div class="cta-row">
-        <a class="cta-ghost" href="#services">Our Services</a>
-        <a class="cta-big" href="https://wa.me/919756769357?text=Hello%2C%20I%27m%20interested%20in%20your%20social%20media%20services" id="hero-contact">Contact on WhatsApp</a>
-      </div>
-    </header>
+  <section class="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Likes, Followers, Views, Shares, Saves, Comments</li>
+      <li>Support for all major social platforms</li>
+      <li>Customizable packages for every budget</li>
+    </ul>
+  </section>
 
-    <section class="hero">
-      <div class="hero-card">
-        <h2>Grow your social presence — real engagement, real results</h2>
-        <p class="lead">We provide likes, followers, views, shares, saves, comments and growth across Instagram, TikTok, YouTube, Telegram and Facebook. Affordable plans — results depend on the package chosen.</p>
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>Is it safe?</h3>
+      <p>Yes, we ensure secure and private transactions while delivering high-quality services.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How does it help my business?</h3>
+      <p>Our services enhance your brand’s visibility and engagement to increase organic growth.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are followers real?</h3>
+      <p>We provide high-quality services; the follower type depends on the package you choose.</p>
+    </div>
+  </section>
 
-        <div class="features">
-          <div class="chip">Instagram</div>
-          <div class="chip">TikTok</div>
-          <div class="chip">YouTube</div>
-          <div class="chip">Telegram</div>
-          <div class="chip">Facebook</div>
-        </div>
+  <section class="announcements">
+    <h2>Announcements</h2>
+    <p>Check back here for daily or weekly updates and latest offers!</p>
+  </section>
 
-        <div class="services-grid" id="services">
-          <div class="service">
-            <h4>Likes & Reactions</h4>
-            <p>Boost visibility with organic-looking likes and reactions across platforms.</p>
-          </div>
-          <div class="service">
-            <h4>Followers & Subscribers</h4>
-            <p>Tiered follower packages — choose quantity and quality level per package.</p>
-          </div>
-          <div class="service">
-            <h4>Views & Plays</h4>
-            <p>Video views and plays optimized for reach and discovery.</p>
-          </div>
-          <div class="service">
-            <h4>Shares & Saves</h4>
-            <p>Engagement that signals value to algorithms: shares and saves.</p>
-          </div>
-          <div class="service">
-            <h4>Comments</h4>
-            <p>Relevant comments that increase engagement metrics and social proof.</p>
-          </div>
-          <div class="service">
-            <h4>Full Channel Growth</h4>
-            <p>Cross-platform strategies and bundle packages for long-term growth.</p>
-          </div>
-        </div>
+  <footer>
+    <p>&copy; 2025 Your Business Name</p>
+  </footer>
 
-        <div class="pricing" aria-label="pricing options">
-          <div class="price-card">
-            <h3>Basic</h3>
-            <p class="muted">Starter boost — quick visibility</p>
-            <p><strong>₹199</strong></p>
-            <p style="font-size:13px;color:var(--muted)">Likes, views small packages</p>
-            <p><a href="https://wa.me/919756769357?text=I%20want%20the%20Basic%20package">Order Basic</a></p>
-          </div>
-
-          <div class="price-card featured">
-            <h3>Growth</h3>
-            <p class="muted">Best value for small businesses</p>
-            <p><strong>₹699</strong></p>
-            <p style="font-size:13px;color:var(--muted)">Followers + engagement bundle</p>
-            <p><a href="https://wa.me/919756769357?text=I%20want%20the%20Growth%20package">Order Growth</a></p>
-          </div>
-
-          <div class="price-card">
-            <h3>Premium</h3>
-            <p class="muted">High-quality, long-term growth</p>
-            <p><strong>₹1999</strong></p>
-            <p style="font-size:13px;color:var(--muted)">Higher-quality audience and retention</p>
-            <p><a href="https://wa.me/919756769357?text=I%20want%20the%20Premium%20package">Order Premium</a></p>
-          </div>
-        </div>
-
-      </div>
-
-      <aside class="card-right">
-        <h3 style="margin-top:0">Why choose us</h3>
-        <p style="color:#1b1b1b">Affordable • Fast turnaround • Secure payments</p>
-
-        <div class="stat"><div>Avg delivery time</div><strong>24–72 hrs</strong></div>
-        <div class="stat"><div>Satisfaction</div><strong>Refund/replace policy</strong></div>
-
-        <div style="height:12px"></div>
-        <div class="ticker" aria-hidden="true">
-          <div class="ticker-list">Latest: New TikTok bundles live • Weekend discount on Growth plan • Limited slots for promotional push</div>
-        </div>
-
-        <div style="height:14px"></div>
-        <a class="cta-big" href="https://t.me/yourtelegram" style="display:block;text-align:center">Contact on Telegram</a>
-        <div style="height:10px"></div>
-        <a class="cta-ghost" href="https://instagram.com/yourinsta" style="display:block;text-align:center">Instagram</a>
-      </aside>
-    </section>
-
-    <section class="faq">
-      <h3>Frequently asked questions</h3>
-
-      <div class="q">
-        <button aria-expanded="false">Is it safe? <span aria-hidden>+</span></button>
-        <div class="answer">
-          <p>Yes. We process payments securely, do not publish your sensitive data, and follow private delivery methods. For high-value orders we recommend using tracked payment methods and reviewing our terms.</p>
-        </div>
-      </div>
-
-      <div class="q">
-        <button aria-expanded="false">How do I order? <span aria-hidden>+</span></button>
-        <div class="answer">
-          <p>Steps: 1) Choose a package. 2) Contact us on WhatsApp/Telegram/Instagram using the buttons. 3) Provide link and required details. 4) Make payment. 5) Delivery starts and progress is reported.</p>
-        </div>
-      </div>
-
-      <div class="q">
-        <button aria-expanded="false">Are the followers/likes real? <span aria-hidden>+</span></button>
-        <div class="answer">
-          <p>We deliver high-quality services, but "realness" depends on chosen package. Higher-tier packages focus on retention and higher-quality accounts. Results vary by platform and campaign.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div>© Console Crusade — Social Growth</div>
-      <div style="display:flex;gap:10px;align-items:center">
-        <a href="https://instagram.com/yourinsta">Instagram</a>
-        <a href="https://t.me/yourtelegram">Telegram</a>
-        <a href="https://wa.me/919756769357">WhatsApp</a>
-      </div>
-    </footer>
-  </div>
-
-  <a class="whatsapp-fab" href="https://wa.me/919756769357?text=Hi%2C%20I%27m%20interested%20in%20your%20services" aria-label="WhatsApp contact">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5 3.5H3.5C3.22386 3.5 3 3.72386 3 4V20C3 20.2761 3.22386 20.5 3.5 20.5H20.5C20.7761 20.5 21 20.2761 21 20V4C21 3.72386 20.7761 3.5 20.5 3.5Z" stroke="white" opacity="0.06"/></svg>
-    Contact
-  </a>
-
-  <script>
-    // FAQ accordion
-    document.querySelectorAll('.q').forEach(q => {
-      const btn = q.querySelector('button');
-      btn.addEventListener('click', () => {
-        const isOpen = q.classList.toggle('open');
-        btn.setAttribute('aria-expanded', isOpen);
-      });
-    });
-
-    // Small progressive enhancement: open first FAQ
-    const first = document.querySelector('.q'); if(first) { first.classList.add('open'); first.querySelector('button').setAttribute('aria-expanded', true); }
-
-    // Optional: animate statistic numbers (simple)
-    // (left simple intentionally to keep file standalone and lightweight)
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
